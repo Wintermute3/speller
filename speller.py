@@ -21,20 +21,32 @@ import sys
 
 Letters = []
 for arg in sys.argv[1:]:
-  Letters.append(arg.upper())
+  if len(arg) == 1:
+    Letters.append(arg.upper())
+  else:
+    for Letter in arg:
+      Letters.append(Letter.upper())
 
 print('%s' % (Letters))
 
 with open('words.txt') as Words:
   for Word in Words:
     Word = Word.strip()
-    Match1 = True
-    Match2 = False
+    AllLettersMatch = True
+    CenterLetterMatch = False
     for Letter in Word:
       if Letter == Letters[0]:
-        Match2 = True
+        CenterLetterMatch = True
       if not Letter in Letters:
-        Match1 = False
+        AllLettersMatch = False
         next
-    if Match1 and Match2:
-      print('%s' % (Word))
+    if AllLettersMatch and CenterLetterMatch:
+      if len(Word) > 3:
+        MatchCount = 0
+        for Letter in Letters:
+          if Letter in Word:
+            MatchCount += 1
+        if MatchCount == 7:
+          print('*** %s' % (Word))
+        else:
+          print('    %s' % (Word))
