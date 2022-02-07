@@ -49,4 +49,4 @@ while True:
   print()
   if len(Candidates) < 2:
     break
-  print()
+print()
