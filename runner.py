@@ -47,7 +47,8 @@ for n in range(0, 5):
         if not Word1 in Longs:
           Longs[Word1] = Sets[n][Word1]
 for Long in sorted(Longs):
-  print('%2d %s' % (len(Longs[Long]), Longs[Long]))
+  if len(Longs[Long]) > 10:
+    print('%2d %s' % (len(Longs[Long]), Longs[Long]))
 
 #---------------------------------------------------------
 # end
